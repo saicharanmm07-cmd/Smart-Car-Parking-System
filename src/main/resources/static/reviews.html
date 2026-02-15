@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Review - ParkValet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="reviews.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Park<span>Valet</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Services</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="bookings.html">My Bookings</a></li>
+      <li><a href="rewards.html" class="points-badge">🎁 1,250 Points</a></li>
+      <li><button class="btn-primary" onclick="window.location.href='booking.html'">Get Started</button></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <!-- Reviews Container -->
+  <section class="reviews-container">
+    <div class="reviews-header">
+      <h1>Rate Your Experience</h1>
+      <p>Your feedback helps us maintain our premium service standards</p>
+    </div>
+
+    <!-- Pending Reviews -->
+    <div class="pending-reviews-section">
+      <h2>Pending Reviews</h2>
+      <p class="section-subtitle">Rate your recent bookings and earn 10 points per review!</p>
+      
+      <div class="pending-reviews-list" id="pendingReviewsList">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Review Form Modal -->
+    <div id="reviewModal" class="modal">
+      <div class="modal-content review-modal">
+        <div class="modal-close" onclick="closeReviewModal()">&times;</div>
+        
+        <div class="review-form-header">
+          <h2>Submit Your Review</h2>
+          <p id="reviewBookingInfo">Booking #12345 - Jan 10, 2025</p>
+        </div>
+
+        <form id="reviewForm" class="review-form">
+          <input type="hidden" id="reviewBookingId">
+          
+          <!-- Driver Rating -->
+          <div class="rating-section">
+            <h3>Rate Your Valet Driver</h3>
+            <p class="rating-description">How was your driver's professionalism and service?</p>
+            
+            <div class="star-rating" data-rating="driver">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="driverRating" required>
+            <p class="rating-label" id="driverRatingLabel">Select rating</p>
+          </div>
+
+          <!-- Service Quality Rating -->
+          <div class="rating-section">
+            <h3>Overall Service Quality</h3>
+            <p class="rating-description">Rate punctuality, communication, and overall experience</p>
+            
+            <div class="star-rating" data-rating="service">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="serviceRating" required>
+            <p class="rating-label" id="serviceRatingLabel">Select rating</p>
+          </div>
+
+          <!-- Car Wash Rating (conditional) -->
+          <div class="rating-section" id="washRatingSection" style="display: none;">
+            <h3>Car Wash Quality</h3>
+            <p class="rating-description">How satisfied are you with the car wash service?</p>
+            
+            <div class="star-rating" data-rating="wash">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="washRating">
+            <p class="rating-label" id="washRatingLabel">Select rating</p>
+          </div>
+
+          <!-- Quick Feedback Tags -->
+          <div class="feedback-tags-section">
+            <h3>What did you like?</h3>
+            <div class="feedback-tags">
+              <button type="button" class="tag-btn" data-tag="professional">Professional</button>
+              <button type="button" class="tag-btn" data-tag="punctual">Punctual</button>
+              <button type="button" class="tag-btn" data-tag="friendly">Friendly</button>
+              <button type="button" class="tag-btn" data-tag="careful">Careful Driving</button>
+              <button type="button" class="tag-btn" data-tag="clean">Spotless Clean</button>
+              <button type="button" class="tag-btn" data-tag="quick">Quick Service</button>
+            </div>
+          </div>
+
+          <!-- Written Review -->
+          <div class="form-group">
+            <label for="reviewText">Share Your Experience (Optional)</label>
+            <textarea id="reviewText" rows="5" placeholder="Tell us more about your experience..."></textarea>
+          </div>
+
+          <!-- Vehicle Condition Check -->
+          <div class="condition-check">
+            <h3>Vehicle Condition</h3>
+            <label class="checkbox-label">
+              <input type="checkbox" id="vehicleCondition" required>
+              <span>I confirm my vehicle was returned in good condition</span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" onclick="closeReviewModal()">Cancel</button>
+            <button type="submit" class="btn-submit-review">Submit Review & Earn 10 Points</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Submitted Reviews -->
+    <div class="submitted-reviews-section">
+      <h2>Your Past Reviews</h2>
+      <p class="section-subtitle">See all the feedback you've shared with us</p>
+      
+      <div class="reviews-filter">
+        <button class="filter-btn active" onclick="filterReviews('all')">All Reviews</button>
+        <button class="filter-btn" onclick="filterReviews('5')">5 Stars</button>
+        <button class="filter-btn" onclick="filterReviews('4')">4 Stars</button>
+        <button class="filter-btn" onclick="filterReviews('low')">3 Stars & Below</button>
+      </div>
+
+      <div class="submitted-reviews-list" id="submittedReviewsList">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Review Stats -->
+    <div class="review-stats-section">
+      <h2>Your Review Impact</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="totalReviews">0</div>
+          <div class="stat-label">Reviews Submitted</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-value" id="averageRating">0.0</div>
+          <div class="stat-label">Average Rating Given</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">🎁</div>
+          <div class="stat-value" id="pointsFromReviews">0</div>
+          <div class="stat-label">Points Earned</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">🏅</div>
+          <div class="stat-value" id="reviewStreak">0</div>
+          <div class="stat-label">Day Review Streak</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div id="reviewSuccessModal" class="modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">✓</div>
+      <h2>Review Submitted!</h2>
+      <p>Thank you for your feedback. You've earned <strong>10 points</strong>!</p>
+      <div class="points-animation">+10 Points</div>
+      <button class="btn-primary" onclick="closeSuccessModal()">Awesome!</button>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script src="reviews.js"></script>
+</body>
+</html>

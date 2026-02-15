@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings - ParkValet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="bookings.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">ParkValet</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="booking.html">Book Now</a>
+        <a href="bookings.html" class="active">My Bookings</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="reviews.html">Reviews</a>
+        <div class="points-badge">🎁 0 Points</div>
+        <div class="user-menu">
+          <div class="user-avatar" onclick="toggleUserDropdown()">
+            <span id="userInitials">U</span>
+          </div>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="dropdown-header">
+              <strong id="dropdownUserName">User</strong>
+              <small id="dropdownUserEmail">user@email.com</small>
+            </div>
+            <a href="bookings.html">My Bookings</a>
+            <a href="rewards.html">My Rewards</a>
+            <a href="reviews.html">My Reviews</a>
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="bookings-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>My Bookings</h1>
+        <p>Track and manage your valet parking reservations</p>
+      </div>
+
+      <div class="bookings-filters">
+        <button class="filter-btn active" onclick="filterBookings('all')">All Bookings</button>
+        <button class="filter-btn" onclick="filterBookings('confirmed')">Confirmed</button>
+        <button class="filter-btn" onclick="filterBookings('completed')">Completed</button>
+        <button class="filter-btn" onclick="filterBookings('cancelled')">Cancelled</button>
+      </div>
+
+      <div class="bookings-list" id="bookingsList">
+        <!-- Bookings will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Booking Details Modal -->
+  <div class="modal" id="detailsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Booking Details</h2>
+        <button class="close-btn" onclick="closeDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBookingDetails">
+        <!-- Details will be loaded here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancel Confirmation Modal -->
+  <div class="modal" id="cancelModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Cancel Booking</h2>
+        <button class="close-btn" onclick="closeCancelModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to cancel this booking?</p>
+        <p style="color: var(--coral); margin-top: 1rem;"><strong>Note:</strong> Points used will be refunded, but points earned will be forfeited.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeCancelModal()">Keep Booking</button>
+        <button class="btn btn-primary" onclick="confirmCancel()">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="bookings.js"></script>
+</body>
+</html>

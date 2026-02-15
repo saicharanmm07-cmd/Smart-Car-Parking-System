@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParkValet - Premium Car Parking & Valet Services</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Park<span>Valet</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="bookings.html">My Bookings</a></li>
+      <li><a href="rewards.html" class="points-badge">🎁 1,250 Points</a></li>
+      <li><button class="btn-primary" onclick="window.location.href='booking.html'">Get Started</button></li>
+      <!-- LOGOUT BUTTON ADDED HERE -->
+      <li><button class="btn-secondary" onclick="logout()">Logout</button></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Your Car, <span class="highlight">Our Priority</span></h1>
+      <p>Premium valet parking with doorstep pickup, professional car washing, and rewards for every booking. Experience hassle-free parking in your area.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="window.location.href='booking.html'">Book Valet Service</button>
+        <button class="btn-secondary" onclick="scrollToSection('how-it-works')">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/placeholder.svg?height=500&width=600" alt="Premium Valet Service">
+    </div>
+  </section>
+
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2 class="section-title">Why Choose ParkValet?</h2>
+    <p class="section-subtitle">Experience premium parking services designed for busy professionals who value their time and their vehicle.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚗</div>
+        <h3>Doorstep Pickup</h3>
+        <p>Our professional valets pick up your car from anywhere within your area. No need to drive to parking lots anymore.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Premium Car Wash</h3>
+        <p>Add professional car washing to your booking. Get your car back spotless with interior and exterior detailing options.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <h3>Rewards Program</h3>
+        <p>Earn points with every booking. Redeem points for discounts, free washes, and premium services on future bookings.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Rate Your Experience</h3>
+        <p>Review your valet drivers and washing quality. Your feedback helps us maintain our premium service standards.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Insured</h3>
+        <p>All vehicles are fully insured during transportation and parking. GPS tracking available for complete peace of mind.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>24/7 Availability</h3>
+        <p>Book anytime, anywhere. Our valet services operate round the clock to match your schedule and needs.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">Get started in three simple steps and experience hassle-free parking.</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Book Online</h3>
+        <p>Select your location, date, and time. Add car wash service if needed. Confirm your booking instantly.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Valet Pickup</h3>
+        <p>Our professional valet arrives at your doorstep, inspects your vehicle, and safely drives it to our secure facility.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Earn & Review</h3>
+        <p>Earn reward points automatically. Rate your driver and service to help us maintain excellence.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Experience Premium Parking?</h2>
+    <p>Join thousands of satisfied customers who trust ParkValet with their vehicles</p>
+    <button class="btn-white" onclick="window.location.href='booking.html'">Book Your First Service</button>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Services</h4>
+        <a href="#">Valet Parking</a>
+        <a href="#">Car Washing</a>
+        <a href="#">Monthly Plans</a>
+        <a href="#">Corporate Services</a>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Safety</a>
+        <a href="#">Insurance</a>
+        <a href="#">Terms of Service</a>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Account</h4>
+        <a href="rewards.html">My Rewards</a>
+        <a href="booking.html">Bookings</a>
+        <a href="#">Reviews</a>
+        <a href="#">Settings</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 ParkValet. All rights reserved. Premium valet parking services in your area.</p>
+    </div>
+  </footer>
+
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

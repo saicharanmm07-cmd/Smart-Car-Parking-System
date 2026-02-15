@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Service - ParkValet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Park<span>Valet</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Services</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="bookings.html">My Bookings</a></li>
+      <li><a href="rewards.html" class="points-badge">🎁 1,250 Points</a></li>
+      <li><button class="btn-primary" onclick="window.location.href='booking.html'">Get Started</button></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </nav>
+
+
+  <!-- Booking Section -->
+  <section class="booking-container">
+    <div class="booking-header">
+      <h1>Book Your Valet Service</h1>
+      <p>Schedule your pickup and let us take care of the rest</p>
+    </div>
+
+
+    <div class="booking-layout">
+      <!-- Booking Form -->
+      <div class="booking-form-container">
+        <form id="bookingForm" class="booking-form">
+          <!-- Step 1: Location -->
+          <div class="form-section active" data-step="1">
+            <div class="step-indicator">
+              <span class="step-number">1</span>
+              <span class="step-title">Pickup Location</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="address">Street Address</label>
+              <input type="text" id="address" placeholder="123 Main Street" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="Your City" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="zipcode">ZIP Code</label>
+                <input type="text" id="zipcode" placeholder="12345" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="area">Service Area</label>
+              <select id="area" required>
+                <option value="">Select your area</option>
+                <option value="downtown">Yelhanka</option>
+                <option value="uptown">Hebbal</option>
+                <option value="business">Majestic</option>
+                <option value="residential">VV Puram</option>
+                <option value="airport">Airport Area</option>
+              </select>
+            </div>
+            
+            <button type="button" class="btn-next" onclick="nextStep(2)">Continue</button>
+          </div>
+
+
+          <!-- Step 2: Vehicle Details -->
+          <div class="form-section" data-step="2">
+            <div class="step-indicator">
+              <span class="step-number">2</span>
+              <span class="step-title">Vehicle Information</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="carMake">Car Make</label>
+              <input type="text" id="carMake" placeholder="e.g., Toyota, BMW, Tesla" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="carModel">Model</label>
+                <input type="text" id="carModel" placeholder="e.g., Camry, X5" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="carYear">Year</label>
+                <input type="number" id="carYear" placeholder="2024" min="1990" max="2025" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="carColor">Color</label>
+              <input type="text" id="carColor" placeholder="e.g., Black, Silver" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="licensePlate">License Plate</label>
+              <input type="text" id="licensePlate" placeholder="ABC-1234" required>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-back" onclick="prevStep(1)">Back</button>
+              <button type="button" class="btn-next" onclick="nextStep(3)">Continue</button>
+            </div>
+          </div>
+
+
+          <!-- Step 3: Date & Time -->
+          <div class="form-section" data-step="3">
+            <div class="step-indicator">
+              <span class="step-number">3</span>
+              <span class="step-title">Pickup Schedule</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="pickupDate">Pickup Date</label>
+              <input type="date" id="pickupDate" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="pickupTime">Pickup Time</label>
+              <input type="time" id="pickupTime" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="duration">Parking Duration</label>
+              <select id="duration" required>
+                <option value="">Select duration</option>
+                <option value="2">2 Hours - ₹250</option>
+                <option value="4">4 Hours - ₹400</option>
+                <option value="8">8 Hours - ₹700</option>
+                <option value="24">Full Day (24 Hours) - ₹1,200</option>
+                <option value="weekly">Weekly - ₹5,800</option>
+                <option value="monthly">Monthly - ₹20,000</option>
+              </select>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-back" onclick="prevStep(2)">Back</button>
+              <button type="button" class="btn-next" onclick="nextStep(4)">Continue</button>
+            </div>
+          </div>
+
+
+          <!-- Step 4: Add-ons -->
+          <div class="form-section" data-step="4">
+            <div class="step-indicator">
+              <span class="step-number">4</span>
+              <span class="step-title">Additional Services</span>
+            </div>
+            
+            <div class="addons-grid">
+              <div class="addon-card" onclick="toggleAddon('basic-wash')">
+                <input type="checkbox" id="basic-wash" name="addons" value="200">
+                <div class="addon-icon">🚿</div>
+                <h3>Basic Wash</h3>
+                <p>Exterior wash & tire cleaning</p>
+                <div class="addon-price">+₹200</div>
+              </div>
+              
+              <div class="addon-card" onclick="toggleAddon('premium-wash')">
+                <input type="checkbox" id="premium-wash" name="addons" value="450">
+                <div class="addon-icon">✨</div>
+                <h3>Premium Wash</h3>
+                <p>Interior + Exterior detailing</p>
+                <div class="addon-price">+₹450</div>
+              </div>
+              
+              <div class="addon-card" onclick="toggleAddon('deluxe-wash')">
+                <input type="checkbox" id="deluxe-wash" name="addons" value="400">
+                <div class="addon-icon">💎</div>
+                <h3>Deluxe Detail</h3>
+                <p>Full detailing + wax + polish</p>
+                <div class="addon-price">+₹400</div>
+              </div>
+              
+              <div class="addon-card" onclick="toggleAddon('priority')">
+                <input type="checkbox" id="priority" name="addons" value="150">
+                <div class="addon-icon">⚡</div>
+                <h3>Priority Service</h3>
+                <p>First pickup & return</p>
+                <div class="addon-price">+₹150</div>
+              </div>
+            </div>
+            
+            <div class="points-section">
+              <h4>💡 Use Your Rewards Points</h4>
+              <p>You have <strong id="availablePoints">1,250</strong> points available</p>
+              <div class="form-group">
+                <label for="pointsToUse">Points to redeem (100 points = ₹10)</label>
+                <input type="number" id="pointsToUse" placeholder="0" min="0" max="1250" step="100">
+                <small>Maximum discount: ₹125</small>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-back" onclick="prevStep(3)">Back</button>
+              <button type="button" class="btn-next" onclick="nextStep(5)">Review Booking</button>
+            </div>
+          </div>
+
+
+          <!-- Step 5: Review & Confirm -->
+          <div class="form-section" data-step="5">
+            <div class="step-indicator">
+              <span class="step-number">5</span>
+              <span class="step-title">Review & Confirm</span>
+            </div>
+            
+            <div class="booking-summary">
+              <h3>Booking Summary</h3>
+              
+              <div class="summary-section">
+                <h4>Location</h4>
+                <p id="summaryLocation">-</p>
+              </div>
+              
+              <div class="summary-section">
+                <h4>Vehicle</h4>
+                <p id="summaryVehicle">-</p>
+              </div>
+              
+              <div class="summary-section">
+                <h4>Schedule</h4>
+                <p id="summarySchedule">-</p>
+              </div>
+              
+              <div class="summary-section">
+                <h4>Services</h4>
+                <p id="summaryServices">-</p>
+              </div>
+              
+              <div class="summary-total">
+                <div class="total-row">
+                  <span>Subtotal:</span>
+                  <span id="subtotalAmount">₹0</span>
+                </div>
+                <div class="total-row discount" id="discountRow" style="display: none;">
+                  <span>Points Discount:</span>
+                  <span id="discountAmount">-₹0</span>
+                </div>
+                <div class="total-row final">
+                  <span>Total:</span>
+                  <span id="totalAmount">₹0</span>
+                </div>
+                <div class="points-earned">
+                  <span>Points You'll Earn: <strong id="pointsEarned">0</strong></span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="termsAccept" required>
+                I agree to the terms of service and insurance policy
+              </label>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-back" onclick="prevStep(4)">Back</button>
+              <button type="submit" class="btn-confirm">Confirm Booking</button>
+            </div>
+          </div>
+        </form>
+
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-step active" data-step="1">
+            <div class="progress-circle">1</div>
+            <span>Location</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="2">
+            <div class="progress-circle">2</div>
+            <span>Vehicle</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="3">
+            <div class="progress-circle">3</div>
+            <span>Schedule</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="4">
+            <div class="progress-circle">4</div>
+            <span>Add-ons</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="5">
+            <div class="progress-circle">5</div>
+            <span>Confirm</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Info Sidebar -->
+      <div class="booking-sidebar">
+        <div class="info-card">
+          <h3>Why Book With Us?</h3>
+          <ul class="benefits-list">
+            <li>✓ Professional insured valets</li>
+            <li>✓ Real-time GPS tracking</li>
+            <li>✓ Secure parking facilities</li>
+            <li>✓ 24/7 customer support</li>
+            <li>✓ Free cancellation up to 2 hours</li>
+          </ul>
+        </div>
+        
+        <div class="info-card">
+          <h3>Earn Rewards</h3>
+          <p>Every booking earns you points!</p>
+          <div class="rewards-info">
+            <div class="reward-item">
+              <span class="reward-icon">🎁</span>
+              <div>
+                <strong>50 points</strong>
+                <small>per booking</small>
+              </div>
+            </div>
+            <div class="reward-item">
+              <span class="reward-icon">⭐</span>
+              <div>
+                <strong>25 bonus points</strong>
+                <small>for premium wash</small>
+              </div>
+            </div>
+            <div class="reward-item">
+              <span class="reward-icon">🔥</span>
+              <div>
+                <strong>Double points</strong>
+                <small>on monthly plans</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="info-card">
+          <h3>Need Help?</h3>
+          <p>Our support team is available 24/7</p>
+          <button class="btn-support">Contact Support</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Booking Confirmation Modal -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">✓</div>
+      <h2>Booking Confirmed!</h2>
+      <p>Your valet service has been successfully scheduled.</p>
+      <div class="booking-id">Booking ID: <strong id="bookingIdDisplay"></strong></div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="window.location.href='index.html'">Back to Home</button>
+        <button class="btn-secondary" onclick="window.location.href='rewards.html'">View Rewards</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script src="booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Rewards - ParkValet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="rewards.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Park<span>Valet</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Services</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="bookings.html">My Bookings</a></li>
+      <li><a href="rewards.html" class="points-badge">🎁 1,250 Points</a></li>
+      <li><button class="btn-primary" onclick="window.location.href='booking.html'">Get Started</button></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <!-- Rewards Dashboard -->
+  <section class="rewards-container">
+    <div class="rewards-header">
+      <h1>My Rewards</h1>
+      <p>Track your points and redeem exciting rewards</p>
+    </div>
+
+    <!-- Points Overview -->
+    <div class="points-overview">
+      <div class="points-card main-balance">
+        <div class="card-content">
+          <div class="points-icon">💎</div>
+          <div class="points-info">
+            <h3>Available Points</h3>
+            <div class="points-value" id="totalPoints">1,250</div>
+            <p class="points-worth">Worth $<span id="pointsWorth">12.50</span> in rewards</p>
+          </div>
+        </div>
+        <div class="card-accent"></div>
+      </div>
+
+      <div class="points-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-info">
+          <h4>Points Earned</h4>
+          <div class="stat-value" id="pointsEarned">2,450</div>
+          <p class="stat-subtitle">Lifetime total</p>
+        </div>
+      </div>
+
+      <div class="points-card">
+        <div class="stat-icon">🎁</div>
+        <div class="stat-info">
+          <h4>Points Redeemed</h4>
+          <div class="stat-value" id="pointsRedeemed">1,200</div>
+          <p class="stat-subtitle">Saved $12.00</p>
+        </div>
+      </div>
+
+      <div class="points-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-info">
+          <h4>Member Tier</h4>
+          <div class="stat-value tier-badge">Silver</div>
+          <p class="stat-subtitle">250 points to Gold</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="rewards-grid">
+      <!-- Left Column -->
+      <div class="rewards-main">
+        <!-- Available Rewards -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2>Available Rewards</h2>
+            <p>Redeem your points for exclusive benefits</p>
+          </div>
+
+          <div class="rewards-catalog">
+            <div class="reward-item" data-points="500">
+              <div class="reward-badge">500 pts</div>
+              <div class="reward-icon-large">🚗</div>
+              <h3>Free Basic Wash</h3>
+              <p>Exterior wash and tire cleaning worth $20</p>
+              <button class="btn-redeem" onclick="redeemReward('basic-wash', 500, 'Free Basic Wash')">Redeem Now</button>
+            </div>
+
+            <div class="reward-item" data-points="1000">
+              <div class="reward-badge">1,000 pts</div>
+              <div class="reward-icon-large">✨</div>
+              <h3>Free Premium Wash</h3>
+              <p>Interior + exterior detailing worth $45</p>
+              <button class="btn-redeem" onclick="redeemReward('premium-wash', 1000, 'Free Premium Wash')">Redeem Now</button>
+            </div>
+
+            <div class="reward-item" data-points="300">
+              <div class="reward-badge">300 pts</div>
+              <div class="reward-icon-large">💰</div>
+              <h3>$5 Discount</h3>
+              <p>Apply to your next valet booking</p>
+              <button class="btn-redeem" onclick="redeemReward('discount-5', 300, '$5 Discount Voucher')">Redeem Now</button>
+            </div>
+
+            <div class="reward-item" data-points="600">
+              <div class="reward-badge">600 pts</div>
+              <div class="reward-icon-large">💵</div>
+              <h3>$10 Discount</h3>
+              <p>Apply to your next valet booking</p>
+              <button class="btn-redeem" onclick="redeemReward('discount-10', 600, '$10 Discount Voucher')">Redeem Now</button>
+            </div>
+
+            <div class="reward-item" data-points="2000">
+              <div class="reward-badge">2,000 pts</div>
+              <div class="reward-icon-large">⚡</div>
+              <h3>Priority Pass</h3>
+              <p>1 month of priority valet service</p>
+              <button class="btn-redeem" onclick="redeemReward('priority-month', 2000, 'Priority Pass (1 Month)')">Redeem Now</button>
+            </div>
+
+            <div class="reward-item" data-points="1500">
+              <div class="reward-badge">1,500 pts</div>
+              <div class="reward-icon-large">💎</div>
+              <h3>Deluxe Detail</h3>
+              <p>Full detailing + wax + polish worth $80</p>
+              <button class="btn-redeem" onclick="redeemReward('deluxe-detail', 1500, 'Free Deluxe Detail')">Redeem Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Points History -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2>Points History</h2>
+            <p>Track how you earned and spent your points</p>
+          </div>
+
+          <div class="history-filters">
+            <button class="filter-btn active" onclick="filterHistory('all')">All</button>
+            <button class="filter-btn" onclick="filterHistory('earned')">Earned</button>
+            <button class="filter-btn" onclick="filterHistory('redeemed')">Redeemed</button>
+          </div>
+
+          <div class="history-list" id="historyList">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="rewards-sidebar">
+        <!-- How to Earn More -->
+        <div class="sidebar-card">
+          <h3>How to Earn More Points</h3>
+          <div class="earning-methods">
+            <div class="earning-item">
+              <div class="earning-icon">🚗</div>
+              <div class="earning-details">
+                <strong>Book Valet Service</strong>
+                <p>Earn 5% of booking value</p>
+              </div>
+            </div>
+            <div class="earning-item">
+              <div class="earning-icon">✨</div>
+              <div class="earning-details">
+                <strong>Add Car Wash</strong>
+                <p>+25 bonus points</p>
+              </div>
+            </div>
+            <div class="earning-item">
+              <div class="earning-icon">⭐</div>
+              <div class="earning-details">
+                <strong>Leave Reviews</strong>
+                <p>+10 points per review</p>
+              </div>
+            </div>
+            <div class="earning-item">
+              <div class="earning-icon">👥</div>
+              <div class="earning-details">
+                <strong>Refer Friends</strong>
+                <p>+100 points per referral</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member Tiers -->
+        <div class="sidebar-card">
+          <h3>Member Tiers</h3>
+          <div class="tier-progression">
+            <div class="tier-level active">
+              <div class="tier-icon">🥈</div>
+              <div class="tier-details">
+                <strong>Silver</strong>
+                <small>Current Tier</small>
+              </div>
+            </div>
+            <div class="tier-arrow">→</div>
+            <div class="tier-level">
+              <div class="tier-icon">🥇</div>
+              <div class="tier-details">
+                <strong>Gold</strong>
+                <small>1,500+ points</small>
+              </div>
+            </div>
+            <div class="tier-arrow">→</div>
+            <div class="tier-level">
+              <div class="tier-icon">💎</div>
+              <div class="tier-details">
+                <strong>Platinum</strong>
+                <small>3,000+ points</small>
+              </div>
+            </div>
+          </div>
+          <div class="tier-benefits">
+            <h4>Gold Tier Benefits</h4>
+            <ul>
+              <li>10% extra points on bookings</li>
+              <li>Priority customer support</li>
+              <li>Exclusive monthly rewards</li>
+              <li>Free priority service upgrades</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Refer & Earn -->
+        <div class="sidebar-card refer-card">
+          <h3>Refer & Earn</h3>
+          <p>Share ParkValet with friends and earn 100 points for each friend who books!</p>
+          <div class="referral-code">
+            <input type="text" value="PARKVALET250" readonly id="referralCode">
+            <button class="btn-copy" onclick="copyReferralCode()">Copy</button>
+          </div>
+          <button class="btn-share">Share Link</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Redemption Modal -->
+  <div id="redemptionModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirm Redemption</h2>
+      </div>
+      <div class="modal-body">
+        <div class="redemption-details">
+          <div class="reward-preview">
+            <div class="reward-icon-preview" id="modalRewardIcon">🎁</div>
+            <h3 id="modalRewardName">Reward Name</h3>
+          </div>
+          <div class="redemption-info">
+            <div class="info-row">
+              <span>Points Required:</span>
+              <strong id="modalPointsCost">0 pts</strong>
+            </div>
+            <div class="info-row">
+              <span>Your Balance:</span>
+              <strong id="modalCurrentBalance">0 pts</strong>
+            </div>
+            <div class="info-row highlight">
+              <span>Balance After:</span>
+              <strong id="modalNewBalance">0 pts</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeRedemptionModal()">Cancel</button>
+        <button class="btn-confirm-redeem" onclick="confirmRedemption()">Confirm Redemption</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">✓</div>
+      <h2>Redemption Successful!</h2>
+      <p id="successMessage">Your reward has been added to your account.</p>
+      <button class="btn-primary" onclick="closeSuccessModal()">Great!</button>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script src="rewards.js"></script>
+</body>
+</html>
